@@ -1,0 +1,12 @@
+name: 'Storybook Deployment'
+
+on: push
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
+      - run: |
+          yarn
+          npm run deploy-storybook -- --ci --host-token-env-variable=GITHUB_TOKEN
