@@ -68,4 +68,7 @@ Page.propTypes = {
 
 Page.defaultProps = {
   user: null,
+  onLogin: () => {},
+  onLogout: () => {},
+  onCreateAccount: () => {},
 };

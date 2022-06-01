@@ -49,4 +49,7 @@ Header.propTypes = {
 
 Header.defaultProps = {
   user: null,
+  onLogin: () => {},
+  onLogout: () => {},
+  onCreateAccount: () => {},
 };
