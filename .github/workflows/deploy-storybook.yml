@@ -1,12 +1,20 @@
 name: 'Storybook Deployment'
 
-on: push
+on:
+  push:
+    branches: [main]
 
 jobs:
-  test:
+  deploy:
+    name: Deploy
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v1
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v2
+        with:
+          node-version: 16
+          cache: yarn
       - run: |
-          yarn
-          npm run deploy-storybook -- --ci --host-token-env-variable=GITHUB_TOKEN
+          yarn install --frozen-lockfile
+          git remote set-url origin https://$GH_TOKEN@github.com/alex-kim-dev/storybook-tutorial.git
+          npm run deploy-storybook -- --host-token-env-variable=GH_TOKEN
